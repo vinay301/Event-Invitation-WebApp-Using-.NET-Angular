@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "GN4y9N87eoiAyC7xU8JBSLL0tqiaSRlEgDtec9onl70=",
+  "Source": "EventInvitationWebApp",
+  "BasePath": "_content/EventInvitationWebApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
