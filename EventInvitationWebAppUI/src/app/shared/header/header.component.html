@@ -2,9 +2,12 @@
   <h3 class="logo">Evently</h3>
   <nav>
     <ul class="nav_links">
-      <li><a href="">Home</a></li>
-      <li><a href="">Services</a></li>
-      <li><a href="">About</a></li>
+      <li><a routerLink="">Home</a></li>
+      <li *ngIf="!isLoggedIn"><a routerLink="/login">Login</a></li>
+      <li *ngIf="!isLoggedIn"><a routerLink="/register">Register</a></li>
+     <li *ngIf="isLoggedIn">Hi,<span style="color:#a5582c">{{username}}</span></li>
+      <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
+     
     </ul>
   </nav>
   <a routerLink=""><button type="button" class="btn">Contact</button></a>

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace EventInvitationWebApp.Controllers
 {
@@ -23,13 +24,15 @@ namespace EventInvitationWebApp.Controllers
             this._userRepository = userRepository;
         }
 
-       
 
+        
         [HttpPost]
         [Route("CreateEvent")]
+        [Authorize]
         public async Task<IActionResult> CreateEvent([FromBody] EventViewModel eventView)
         {
-            
+            //var identity = HttpContext.User.Identity as ClaimsIdentity;
+            //var userName = identity.FindFirst(ClaimTypes.Name).Value;
             var user = await _userRepository.GetUserById(eventView.CreatorId);
             if(user ==  null)
             {

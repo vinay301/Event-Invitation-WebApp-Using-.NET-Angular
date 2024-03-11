@@ -36,15 +36,18 @@ onLogin(){
     //send obj to Db
     this.authService.login(this.loginForm.value).subscribe({
       next : (res => {
+        const token = res.result.token;
         this.loginForm.reset();
-        this.authService.storeToken(res.accessToken);
-        this.authService.storeRefreshToken(res.refreshToken);
+        this.authService.storeToken(token);
+        //this.authService.storeRefreshToken(res.refreshToken);
         const tokenPayload = this.authService.decryptToken();
         this.userStore.setUsernameForStore(tokenPayload.unique_name);
         this.userStore.setRoleForStore(tokenPayload.role);
-        //console.log(res.message);
-        this.toast.success({detail:"SUCCESS",summary:res.msessage,duration:5000});
-        this.router.navigate(['dashboard']);
+        res.message = "Logged in Successfully";
+        //console.log(res);
+        
+        this.toast.success({detail:"SUCCESS",summary:res.result.user.name + " " + res.message,duration:5000});
+        this.router.navigate(['home']);
       }),
       error : (err => {
         // console.log(err);

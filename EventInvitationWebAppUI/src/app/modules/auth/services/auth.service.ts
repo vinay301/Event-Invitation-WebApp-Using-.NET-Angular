@@ -18,19 +18,19 @@ export class AuthService {
   
   
   register(userObj : any){
-    return this.http.post<any>(this.baseApiUrl + '/api/User/register',userObj);
+    return this.http.post<any>(this.baseApiUrl + '/api/auth/Register',userObj);
   }
   
   login(loginObj  :any){
-    return this.http.post<any>(this.baseApiUrl + '/api/User/authenticate',loginObj);
+    return this.http.post<any>(this.baseApiUrl + '/api/auth/Login',loginObj);
   }
   
   //To store JWT Token
   storeToken(tokenValue : string){
-    localStorage.setItem('token',tokenValue);
+    localStorage.setItem('event_token',tokenValue);
   }
   getToken(){
-    return localStorage.getItem('token');
+    return localStorage.getItem('event_token');
   }
   
   //To store RefreshToken
@@ -43,13 +43,13 @@ export class AuthService {
   
   isLoggedIn() : boolean {
     //it returns a string but (!!) it converts into boolean
-    return !! localStorage.getItem('token');
+    return !! localStorage.getItem('event_token');
   }
   
   signOut()
   {
     localStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
   
   decryptToken(){
@@ -61,7 +61,13 @@ export class AuthService {
   getUsernameFromToken(){
     if(this.userPayload)
     {
-      return this.userPayload.unique_name;
+      return this.userPayload.name;
+    }
+  }
+  getUsrIdFromToken(){
+    if(this.userPayload)
+    {
+      return this.userPayload.sub;
     }
   }
   getRoleFromToken(){
@@ -71,8 +77,6 @@ export class AuthService {
     }
   }
   
-  renewToken(tokenApi : TokenApiModel){
-    return this.http.post<any>(this.baseApiUrl + '/api/User/refresh',tokenApi);
-  }
+ 
   }
   

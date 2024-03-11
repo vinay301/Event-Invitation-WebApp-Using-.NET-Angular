@@ -16,7 +16,7 @@
           </div>
           <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger">*Password is required</small>
       
-          <div class="form-inline fr mt-4"> <a id="forget" data-bs-toggle="modal" data-bs-target="#exampleModal" class="font-weight-bold" (click)="OpenForgetPasswordModal()">Forgot password?</a> </div>
+         
           <input (click)="onLogin()" type="submit" value="Login" class="btn solid" />
          
         </form>
@@ -35,7 +35,7 @@
             Register
           </button></a>
         </div>
-        <img src="assets/images/login.png" class="image" alt="Login" />
+        <img src="../../../../assets/images/login.png" class="image" alt="Login" />
       </div>
      
     </div>

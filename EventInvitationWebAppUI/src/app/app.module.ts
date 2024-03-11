@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgToastModule } from 'ng-angular-popup';
+import { AddEventComponent } from './modules/home/components/add-event/add-event.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     EventsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddEventComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
-
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

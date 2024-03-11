@@ -1,14 +1,17 @@
-﻿using EventInvitationWebApp.Models;
+﻿using Duende.IdentityServer.EntityFramework.Options;
+using EventInvitationWebApp.Models;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace EventInvitationWebApp.Data
 {
-    public class EventInvitationDbContext : DbContext
+    public class EventInvitationDbContext : ApiAuthorizationDbContext<User>
     {
-        public EventInvitationDbContext(DbContextOptions options) : base(options)
+        public EventInvitationDbContext(DbContextOptions<EventInvitationDbContext> options, IOptions<OperationalStoreOptions> operationalStoreOptions)
+            : base(options, operationalStoreOptions)
         {
-
         }
         public DbSet<Event> Events { get; set; }
         public DbSet<Invitation> Invitations { get; set; }
@@ -47,7 +50,7 @@ namespace EventInvitationWebApp.Data
                 new IdentityRole { Id = "2", Name = "User", NormalizedName = "USER".ToUpper() }
             );
 
-            modelBuilder.Entity<IdentityUserRole<string>>().HasKey(ur => new { ur.UserId, ur.RoleId });
+            //modelBuilder.Entity<IdentityUserRole<string>>().HasKey(ur => new { ur.UserId, ur.RoleId });
                 modelBuilder.Entity<IdentityUserRole<string>>().HasData(
                 new IdentityUserRole<string> { UserId = userID1, RoleId = "1" },
                 new IdentityUserRole<string> { UserId = userID2, RoleId = "2" }

@@ -1,11 +1,14 @@
 using EventInvitationWebApp.Data;
+using EventInvitationWebApp.Extensions;
 using EventInvitationWebApp.Models;
 using EventInvitationWebApp.Repositories.Implementation;
 using EventInvitationWebApp.Repositories.Interface;
 using EventInvitationWebApp.Services.Implementation;
 using EventInvitationWebApp.Services.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +28,15 @@ builder.Services.AddDbContext<EventInvitationDbContext>(options =>
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
 
 //Configure Identity Tables
-builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<EventInvitationDbContext>().AddDefaultTokenProviders();
+//builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<EventInvitationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddDefaultIdentity<User>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+}).AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<EventInvitationDbContext>();
+
+builder.Services.AddIdentityServer()
+                .AddApiAuthorization<User, EventInvitationDbContext>();
 
 // Add services to the container.
 
@@ -39,7 +50,35 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//Adding Authentication To Swagger
+builder.Services.AddSwaggerGen(option =>
+{
+    option.AddSecurityDefinition(name: JwtBearerDefaults.AuthenticationScheme, securityScheme: new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Description = "Enter the Bearer Authorization string as following : `Bearer Generated-JWT-Token`",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = JwtBearerDefaults.AuthenticationScheme
+                }
+            }, new string [] {}
+        }
+    });
+});
+
+builder.AddAppAuthentication();
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
