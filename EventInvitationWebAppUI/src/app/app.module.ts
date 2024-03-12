@@ -14,6 +14,13 @@ import { RegisterComponent } from './modules/auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgToastModule } from 'ng-angular-popup';
 import { AddEventComponent } from './modules/home/components/add-event/add-event.component';
+import { TabControlComponent } from './shared/components/TabControl/TabControl.component';
+import { TabItemHeaderComponent } from './shared/components/tab-item-header/tab-item-header.component';
+import { EventListComponent } from './shared/components/event-list/event-list.component';
+import { UserEventListComponent } from './shared/components/user-event-list/user-event-list.component';
+import { UserInvitesListComponent } from './shared/components/user-invites-list/user-invites-list.component';
+import { ViewEventComponent } from './modules/home/components/view-event/view-event.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +30,13 @@ import { AddEventComponent } from './modules/home/components/add-event/add-event
     EventsComponent,
     LoginComponent,
     RegisterComponent,
-    AddEventComponent
+    AddEventComponent,
+    TabControlComponent,
+    TabItemHeaderComponent,
+    EventListComponent,
+    UserEventListComponent,
+    UserInvitesListComponent,
+    ViewEventComponent
   ],
   imports: [
     BrowserModule,

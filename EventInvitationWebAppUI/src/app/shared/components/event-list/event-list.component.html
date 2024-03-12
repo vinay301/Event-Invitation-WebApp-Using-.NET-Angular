@@ -1,0 +1,18 @@
+ <div class="container">
+        <div class="events">
+            <div class="event-lists" *ngFor="let events of events">
+                <div class="event-item">
+                    <div class="event-item-image">
+                        <img src="../../../../../assets/images/Events.png" alt="events-list-image">
+                    </div>
+                    <div class="event-item-info">
+                        <h4>{{events.name}}</h4>
+                        <p>Listed By: {{events.creator.email}}</p>
+                    </div>
+                    <div class="view-event">
+                       <button type="button" class="btn" [routerLink]="['/','view-event', events.id]">View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -3,25 +3,26 @@
 
   <!--Cart section-->
   <section class="event-list">
-    <a routerLink="/add-event" class="btn rounded-full mb-3">List New Event</a>
-    <div class="container">
-        <div class="events">
-            <div class="event-lists" *ngFor="let events of events">
-                <div class="event-item">
-                    <div class="event-item-image">
-                        <img src="../../../../../assets/images/Events.png" alt="events-list-image">
-                    </div>
-                    <div class="event-item-info">
-                        <h4>{{events.name}}</h4>
-                        <p>1 Item</p>
-                    </div>
-                    <div class="view-event">
-                       <button type="button" class="btn">View</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="event-features">
+        <a routerLink="/add-event" class="btn rounded-full mb-3">List New Event</a>
     </div>
+    
+   
+    <div class="tab-section">
+        <nav>
+            <ul>
+                <li (click)="insertComponent('All Events')">All Events</li>
+                <li (click)="insertComponent('Your Events')">Your Events</li>
+                <li (click)="insertComponent('Your Invites')">Your Invites</li>
+            </ul>
+        </nav>
+        <main>
+            <app-TabControl></app-TabControl>
+        </main>
+      
+    </div>
+    
+
  </section>
 
 </div>

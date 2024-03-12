@@ -1,0 +1,28 @@
+<!--product details-->
+<section class="catalogue">
+  <div class="container heading text-center">
+    <h1 class="text-center font-weight-bold mt-3">EVENT DETAILS</h1>
+  </div>
+
+<div class="container" id="productDetailId">
+  <div class="row">
+      <div class="product-img text-center" *ngIf="eventDetail">
+          <img src="../../../../../assets/images/Events.png" alt="Event Image">
+      </div>
+      <p *ngIf="!eventDetail">No Event Image Found</p>
+     
+          <div class="col-lg-6 mb-5" *ngIf="eventDetail">
+              <div class="product-info text-center">
+                  <h1>Event Name: <span>{{eventDetail.name}}</span></h1>
+                  <h3>Start Date : <span>{{eventDetail.startDate}}</span></h3>
+                  <h3>End Date : <span>{{eventDetail.endDate}}</span></h3>
+              </div>
+          </div>
+          <div class="col-lg-6 mb-5" *ngIf="eventDetail">
+            <div class="product-info text-center">
+                <h1>Listed By: <span>{{eventDetail.creator.email}}</span></h1>
+            </div>
+        </div>
+  </div>
+</div>
+</section>

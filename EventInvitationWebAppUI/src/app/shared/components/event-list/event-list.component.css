@@ -1,20 +1,5 @@
-.hero{
-    padding:10px 10%;
-    font-family: "Meriweather";
-    word-spacing: 5px;
-    
-}
-
-.hero h1{
-    text-align: center;
-    font-weight: 900;
-    font-size: xx-large;
-    margin-bottom: 30px;
-}
-
-
 .events {
-    /* margin:10px 0px; */
+    margin:10px 0px;
     border-radius: 30px;
     background: #fff;
     padding: 20px;
@@ -101,50 +86,4 @@
     display:flex;
     justify-content: space-around;
     row-gap: 2px;
-}
-
-.tab-section{
-    display:grid;
-    gap: 1rem;
-    grid-template-columns: 200px 1fr;
-}
-
-nav {
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 0 1 rem;
-}
-
-nav ul{
-    list-style: none;
-}
-
-nav ul li{
-    /* padding: 0.5rem;
-    border:1px solid lightgray */
-    border-radius: 50px;
-    background-color: #A5582C;
-    color:#ffffff;
-    padding: 9px 20px;
-    border:none;
-    font-size: small;
-    transition: all 0.3s ease 0s;
-
-}
-
-nav ul li:not(:last-child){
-    margin-bottom: 1rem;
-}
-
-nav ul li:hover{
-    background-color:#ecc194;
-    cursor:pointer;
-}
-
-main{
-    border: 1px solid #ecc194;
-}
-
-main>*{
-    height:100%;
 }

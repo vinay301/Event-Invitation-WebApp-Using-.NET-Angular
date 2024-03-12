@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Events } from '../../../../core/models/event.model';
 import { EventsService } from '../../services/events.service';
+import { TabService } from '../../../../core/services/tab.service';
 
 @Component({
   selector: 'app-events',
@@ -10,7 +11,7 @@ import { EventsService } from '../../services/events.service';
 export class EventsComponent implements OnInit {
 
   events: Events[] = [];
-  constructor(private eventService:EventsService) { }
+  constructor(private eventService:EventsService, private tabService:TabService) { }
 
   ngOnInit() {
     this.eventService.getAllEvents()
@@ -23,6 +24,11 @@ export class EventsComponent implements OnInit {
         console.log(res);
       }
     });
+  }
+
+  insertComponent(code:string)
+  {
+    this.tabService.tabItemObservable.next(code);
   }
 
 }

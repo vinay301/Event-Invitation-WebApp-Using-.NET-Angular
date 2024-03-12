@@ -1,0 +1,16 @@
+<section class="tab-items">
+  <app-tab-item-header *ngFor="let item of tabs" [Header]="item.header"
+                        [IsActive]="item.content.instance.IsActive"
+                        [UniqueCode]="item.uniqueCode"
+                        (Selected)="selectTab($event)"></app-tab-item-header>
+  <!-- <app-tab-item-header class="active"></app-tab-item-header>
+  <app-tab-item-header></app-tab-item-header>
+  <app-tab-item-header></app-tab-item-header> -->
+</section>
+
+<section class="tab-content">
+  <ng-container #containerRef>
+    <!-- <app-event-list></app-event-list> -->
+  </ng-container>
+  
+</section>

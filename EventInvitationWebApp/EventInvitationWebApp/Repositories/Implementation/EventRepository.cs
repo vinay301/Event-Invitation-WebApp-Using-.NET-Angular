@@ -35,9 +35,12 @@ namespace EventInvitationWebApp.Repositories.Implementation
         public async Task<Event> GetEventById(string eventId)
         {
             return await _eventInvitationDbContext.Events
+                            .Include(e => e.Creator)
                             .Include(e => e.Invitations)
                             .ThenInclude(i => i.InvitedUser) // Include User in the Invitations collection
                             .FirstOrDefaultAsync(e => e.Id == eventId);
+            
+       
         }
 
         public async Task<List<Event>> GetAllEventsAsync()

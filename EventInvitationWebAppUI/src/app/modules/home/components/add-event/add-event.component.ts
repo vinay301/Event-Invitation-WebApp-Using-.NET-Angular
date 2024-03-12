@@ -4,6 +4,7 @@ import { EventsService } from '../../services/events.service';
 import { NgToastService } from 'ng-angular-popup';
 import { User } from '../../../../core/models/user.model';
 import { AuthService } from '../../../auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-event',
@@ -17,9 +18,15 @@ export class AddEventComponent implements OnInit {
     name: '',
     startDate: new Date(),
     endDate: new Date(),
-    creatorId:''
+    creatorId:'',
+    creator: {
+      id: '',
+      email: '',
+      userName: '',
+      password: ''
+    }
   }
-  constructor(private eventsService:EventsService, private toast:NgToastService, private authService:AuthService) { }
+  constructor(private eventsService:EventsService, private toast:NgToastService, private authService:AuthService, private router :Router) { }
   userId:string = ''
   ngOnInit() {
   }
@@ -30,6 +37,7 @@ export class AddEventComponent implements OnInit {
       next: (events) => {
         console.log(events)
         this.toast.success({detail:"SUCCESS",summary:'Event Listed Successfully!',duration:5000})
+        this.router.navigate(['']);
       }, 
       error: (errorMessage)=>{
         console.log(errorMessage)

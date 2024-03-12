@@ -17,11 +17,19 @@ constructor(private http:HttpClient, private authService:AuthService) { }
     return this.http.get<Events[]>(this.baseApiUrl + '/api/events/GetAllEvents');
   }
 
+  getEventById(eventId:string) : Observable<Events>{
+    return this.http.get<Events>(this.baseApiUrl + `/api/events/GetEventById/${eventId}`)
+  }
+
   addEvent(eventObj:Events): Observable<Events> {
     let headers = new HttpHeaders().set('Authorization','Bearer '+localStorage.getItem('event_token'));
     eventObj.creatorId = this.authService.getUsrIdFromToken();
     console.log(eventObj.creatorId);
     return this.http.post<Events>(this.baseApiUrl + '/api/events/CreateEvent', eventObj,{headers
     });
+  }
+
+  getCreatedEventsByUserId(userId:string) : Observable<Events[]>{
+    return this.http.get<Events[]>(this.baseApiUrl+`/api/events/GetCreatedEventsByUserId/${userId}`)
   }
 }

@@ -6,4 +6,5 @@ export interface Events{
     startDate:Date
     endDate:Date
    creatorId:string
+   creator:User
 }

@@ -90,6 +90,7 @@ namespace EventInvitationWebApp.Controllers
 
                 var response = _events.Select(e => new EventDto
                 {
+                    Id = e.Id,
                     Name = e.Name,
                     StartDate = e.StartDate,
                     EndDate = e.EndDate,
@@ -106,6 +107,41 @@ namespace EventInvitationWebApp.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, "Internal Server Error");
+            }
+        }
+
+        [HttpGet]
+        [Route("GetEventById/{eventId}")]
+        public async Task<IActionResult> GetEventById(string eventId)
+        {
+            try
+            {
+                var _event = await _eventRepository.GetEventById(eventId);
+
+                if (_event == null)
+                {
+                    return NotFound($"Event with ID {eventId} not found");
+                }
+
+                var response = new EventDto
+                {
+                    Id = _event.Id,
+                    Name = _event.Name,
+                    StartDate = _event.StartDate,
+                    EndDate = _event.EndDate,
+                    Creator = _event.Creator != null ? new UserDto
+                    {
+                        Id = _event.Creator.Id,
+                        Name = _event.Creator.Name,
+                        Email = _event.Creator.Email
+                    } : null
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal Server Error: {ex.Message}");
             }
         }
 
@@ -126,6 +162,7 @@ namespace EventInvitationWebApp.Controllers
                 var createdEventsByUser = await _eventRepository.GetEventsByUserAsync(userId);
                 var response = createdEventsByUser.Select(e => new EventDto
                 {
+                    Id = e.Id,
                     Name = e.Name,
                     StartDate = e.StartDate,
                     EndDate = e.EndDate,
