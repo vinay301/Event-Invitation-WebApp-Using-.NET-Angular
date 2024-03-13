@@ -4,6 +4,7 @@ using EventInvitationWebApp.Models.ViewModel;
 using EventInvitationWebApp.Repositories.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -77,6 +78,7 @@ namespace EventInvitationWebApp.Controllers
        
         [HttpGet]
         [Route("GetAllEvents")]
+       
         public async Task<IActionResult> GetAllEvents()
         {
             try
@@ -99,7 +101,8 @@ namespace EventInvitationWebApp.Controllers
                         Id = e.Creator.Id,
                         Name = e.Creator.Name,
                         Email = e.Creator.Email
-                    } : null
+                    } : null,
+                   
                 }).ToList();
 
                 return Ok(response);
@@ -134,7 +137,12 @@ namespace EventInvitationWebApp.Controllers
                         Id = _event.Creator.Id,
                         Name = _event.Creator.Name,
                         Email = _event.Creator.Email
-                    } : null
+                    } : null,
+                    Invitation = _event.Invitations != null ? _event.Invitations.Select(invitation => new InviteResponseDto(
+                        eventId: invitation.EventId,
+                        respondingUserName: invitation.UserId,
+                        response: invitation.Response
+                    )).ToList() : null
                 };
 
                 return Ok(response);
@@ -211,11 +219,12 @@ namespace EventInvitationWebApp.Controllers
 
                 _event.Invitations.Add(invitation);
                 await _eventRepository.UpdateEventAsync(_event);
-                return Ok("Invitation Sent Succesfully!");
+                return Ok(new { message = "Invitation Sent Successfully!" });
+
             }
             catch (Exception ex)
             {
-                return NotFound("Something Went Wrong!");
+                return StatusCode(500, "Something went wrong while sending the invitation.");
             }
            
         }
@@ -337,25 +346,63 @@ namespace EventInvitationWebApp.Controllers
                 {
                     return BadRequest("User Not Invited In Any Event");
                 }
-                var response = invitedEvents.Select(e => new EventDto
+                //var response = invitedEvents.Select(e => new EventDto
+                //{
+                //    Id = e.Id,
+                //    Name = e.Name,
+                //    StartDate = e.StartDate,
+                //    EndDate = e.EndDate,
+                //    Creator = e.Creator != null ? new UserDto
+                //    {
+                //        Id = e.Creator.Id,
+                //        Name = e.Creator.Name,
+                //        Email = e.Creator.Email
+                //    } : null,
+                //    InviteResponse = await GetInviteResponse(userId, e.Id)
+                //}).ToList();
+                var response = new List<EventDto>();
+                foreach (var e in invitedEvents)
                 {
-                    Name = e.Name,
-                    StartDate = e.StartDate,
-                    EndDate = e.EndDate,
-                    Creator = e.Creator != null ? new UserDto
+                    var eventDto = new EventDto
                     {
-                        Id = e.Creator.Id,
-                        Name = e.Creator.Name,
-                        Email = e.Creator.Email
-                    } : null
-                }).ToList();
-
+                        Id = e.Id,
+                        Name = e.Name,
+                        StartDate = e.StartDate,
+                        EndDate = e.EndDate,
+                        Creator = e.Creator != null ? new UserDto
+                        {
+                            Id = e.Creator.Id,
+                            Name = e.Creator.Name,
+                            Email = e.Creator.Email
+                        } : null,
+                        InviteResponse = await GetInviteResponse(userId, e.Id)
+                    };
+                    response.Add(eventDto);
+                }
+                    string json = JsonConvert.SerializeObject(response, Formatting.Indented);
+                Console.WriteLine(json);
                 return Ok(response);
             }
             catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        private async Task<InviteResponseDto> GetInviteResponse(string userId, string eventId)
+        {
+            var invitation = await _eventRepository.GetInviteResponse(userId, eventId);
+            if (invitation != null)
+            {
+                return new InviteResponseDto(eventId, userId, invitation.Response);
+                //return new InviteResponseDto
+                //{
+                //    EventId = eventId,
+                //    RespondingUserName = userId,
+                //    Status = invitation.Response.ToString() 
+                //};
+            }
+            return null;
         }
 
     }

@@ -58,5 +58,105 @@ justify-content: center;
     color:#a5582c;
 }
 
+.invite-btn{
+    border: #a5582c 1px solid;
+    border-radius: 50px;
+    width:50%;
+    margin-left: 150px;
+    display: flex;
+    justify-content: space-around;
+}
+.invite-btn:hover{
+    background-image: linear-gradient(-45deg, #a5582c 0%, #ecc194 100%) !important;
+}
+
+.invite-btn .btn:hover{
+    color:white
+}
+.invite-btn .btn{
+    color:#a5582c
+}
+
+.Input{
+    border:none;
+    width:100%;
+}
+
+.Input:focus{
+    border-radius: 10px;
+    outline: none;
+}
+
+.modal-footer .btn-primary{
+    background-image: linear-gradient(-45deg, #a5582c 0%, #ecc194 100%) ;
+    border:none;
+    border-radius: 50px;
+}
+
+.modal-footer .btn-primary:hover{
+    background-color: whitesmoke;
+    border:1px solid #a5582c;
+    color:#a5582c;
+    
+}
+
+.modal-footer .btn-secondary{
+    border-radius: 50px;
+    background-color: #383b38;
+    color:white;
+}
+.close{
+    background-color: transparent;
+    border: none;
+    font-size: large;
+}
+
+.accept-btn{
+    border: #a5582c 1px solid;
+    border-radius: 50px;
+    width:50%;
+    margin-left: 150px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.accept-btn:hover{
+    /* background-image: linear-gradient(-45deg, #a5582c 0%, #ecc194 100%) !important; */
+    background-color: #378b29;
+    background-image: linear-gradient(315deg, #378b29 0%, #ffffff 74%);
+
+}
+
+.accept-btn .btn:hover{
+    color:white
+}
+.accept-btn .btn{
+    color:#a5582c
+}
+
+.reject-btn{
+    border: #a5582c 1px solid;
+    border-radius: 50px;
+    width:50%;
+    margin-left: 150px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.reject-btn:hover{
+    /* background-image: linear-gradient(-45deg, #a5582c 0%, #ecc194 100%) !important; */
+    background-color: #ff7878;
+    background-image: linear-gradient(315deg, #ff7878 0%, #ff0000 74%);
+    
+
+}
+
+.reject-btn .btn:hover{
+    color:white
+}
+.reject-btn .btn{
+    color:#a5582c
+}
+
 
 

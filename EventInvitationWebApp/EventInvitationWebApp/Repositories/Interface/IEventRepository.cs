@@ -13,5 +13,7 @@ namespace EventInvitationWebApp.Repositories.Interface
         //Task DeleteEventAsync(string eventId);
         Task<List<Event>> GetEventsByUserAsync(string userId);
         Task<List<Event>> GetEventsUserIsInvitedTo(string userId);
+
+        Task<Invitation> GetInviteResponse(string userId, string eventId);
     }
 }

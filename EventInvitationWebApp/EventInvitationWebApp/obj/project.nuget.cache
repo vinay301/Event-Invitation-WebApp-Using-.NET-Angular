@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Z2JlM2hzjvI3z47p9SdVL+6dfpT+speN+1nJAr/a9lQHf90YriE4t3w/hyeHdkls46VHVEN9rFc4Ve6Y4Ph4NQ==",
+  "dgSpecHash": "EC1RXARU8PLAZquLRYch3Jc4CMPdDDdXfUpFBj11CMI13zAC0i/SBA2ABQYkdUzh6dc0lSuQxLnNGRhTW0Mjxw==",
   "success": true,
   "projectFilePath": "C:\\Users\\vinaysharma04\\OneDrive - Nagarro\\Desktop\\PersonalProjects\\Event Invitation WebApp using .NET\\EventInvitationWebApp\\EventInvitationWebApp\\EventInvitationWebApp.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\duende.identityserver.storage\\6.0.4\\duende.identityserver.storage.6.0.4.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\identitymodel\\6.0.0\\identitymodel.6.0.0.nupkg.sha512",
+    "C:\\Users\\vinaysharma04\\.nuget\\packages\\json.net\\1.0.33\\json.net.1.0.33.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.aspnetcore.apiauthorization.identityserver\\7.0.16\\microsoft.aspnetcore.apiauthorization.identityserver.7.0.16.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.16\\microsoft.aspnetcore.authentication.jwtbearer.7.0.16.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\6.0.0\\microsoft.aspnetcore.authentication.openidconnect.6.0.0.nupkg.sha512",
@@ -23,6 +24,8 @@
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\7.0.16\\microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.16.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.16\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.16.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\7.0.16\\microsoft.aspnetcore.identity.ui.7.0.16.nupkg.sha512",
+    "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\7.0.16\\microsoft.aspnetcore.jsonpatch.7.0.16.nupkg.sha512",
+    "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\7.0.16\\microsoft.aspnetcore.mvc.newtonsoftjson.7.0.16.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.5\\microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
@@ -67,6 +70,7 @@
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\vinaysharma04\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\vinaysharma04\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

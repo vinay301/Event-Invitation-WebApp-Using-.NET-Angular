@@ -7,5 +7,8 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public UserDto Creator { get; set; }
+        
+        public List<InviteResponseDto> Invitation { get; set; }
+        public InviteResponseDto InviteResponse { get; set; }
     }
 }

@@ -21,8 +21,47 @@
           <div class="col-lg-6 mb-5" *ngIf="eventDetail">
             <div class="product-info text-center">
                 <h1>Listed By: <span>{{eventDetail.creator.email}}</span></h1>
+                <div class="invite-btn" *ngIf="showInviteButton">
+                  <a class="btn" data-toggle="modal" data-target="#exampleModal">Send Invite</a>
+                </div>
+                <div class="flex mb-2">
+                  <div class="accept-btn" *ngIf="InviteResponseChoice">
+                    <a class="btn" (click)="inviteResponse('accept')">Accept Invite</a>
+                  </div>
+                  <div class="reject-btn" *ngIf="InviteResponseChoice">
+                    <a class="btn" (click)="inviteResponse('reject')">Reject Invite</a>
+                  </div>
+                </div>
+                
             </div>
         </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Send Invitation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="Input" placeholder="Enter username whom you want to invite" [(ngModel)]="inviteUserRequest.invitedUsername">
+        <small *ngIf="!inviteUserRequest.invitedUsername" class="text-danger">*Username is required*</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="sendInvite()">Send Invite</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 </section>
+
+

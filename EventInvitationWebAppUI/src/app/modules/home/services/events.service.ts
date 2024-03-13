@@ -4,6 +4,8 @@ import { environment } from '../../../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { Events } from '../../../core/models/event.model';
 import { AuthService } from '../../auth/services/auth.service';
+import { Invite } from '../../../core/models/invite.model';
+import { Invitations } from '../../../core/models/invitations';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +33,19 @@ constructor(private http:HttpClient, private authService:AuthService) { }
 
   getCreatedEventsByUserId(userId:string) : Observable<Events[]>{
     return this.http.get<Events[]>(this.baseApiUrl+`/api/events/GetCreatedEventsByUserId/${userId}`)
+  }
+
+  inviteUsersForEvent(inviteObj:Invite):Observable<Invite>{
+    console.log("Invite data", inviteObj);
+   
+    return this.http.post<Invite>(this.baseApiUrl + '/api/events/InviteUsers', inviteObj);
+  }
+
+  getInvitedEventsOfUser(userId:string):Observable<Events[]>{
+    return this.http.get<Events[]> (this.baseApiUrl+`/api/events/GetInvitedEventsOfUser/${userId}`);
+  }
+
+  inviteResponse(inviteResponseObj:Invitations):Observable<Invitations>{
+    return this.http.post<Invitations> (this.baseApiUrl + '/api/events/InviteResponse', inviteResponseObj)
   }
 }

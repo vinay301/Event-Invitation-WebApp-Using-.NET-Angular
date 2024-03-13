@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace EventInvitationWebApp.Models
 {
@@ -15,6 +17,7 @@ namespace EventInvitationWebApp.Models
         [Required]
         public User Creator { get; set; }
         public List<User> InvitedUsers { get; } = new List<User>();
-        public List<Invitation> Invitations { get; } = new List<Invitation>();
+        [JsonIgnore]
+        public virtual List<Invitation> Invitations { get; } = new List<Invitation>();
     }
 }

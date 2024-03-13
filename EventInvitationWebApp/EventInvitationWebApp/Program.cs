@@ -8,7 +8,11 @@ using EventInvitationWebApp.Services.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,8 +43,16 @@ builder.Services.AddIdentityServer()
                 .AddApiAuthorization<User, EventInvitationDbContext>();
 
 // Add services to the container.
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.Converters.Add(new StringEnumConverter(new CamelCaseNamingStrategy()));
+    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+});
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+//builder.Services.AddNewtonsoftJson(options =>
+//      options.SerializerSettings.ReferenceLoopHandling =
+//        ReferenceLoopHandling.Ignore);
 
 //Configure Services
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();

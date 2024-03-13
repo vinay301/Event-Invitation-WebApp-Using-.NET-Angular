@@ -96,3 +96,7 @@ C:\Users\vinaysharma04\OneDrive - Nagarro\Desktop\PersonalProjects\Event Invitat
 C:\Users\vinaysharma04\OneDrive - Nagarro\Desktop\PersonalProjects\Event Invitation WebApp using .NET\EventInvitationWebApp\EventInvitationWebApp\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\vinaysharma04\OneDrive - Nagarro\Desktop\PersonalProjects\Event Invitation WebApp using .NET\EventInvitationWebApp\EventInvitationWebApp\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
 C:\Users\vinaysharma04\OneDrive - Nagarro\Desktop\PersonalProjects\Event Invitation WebApp using .NET\EventInvitationWebApp\EventInvitationWebApp\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\vinaysharma04\OneDrive - Nagarro\Desktop\PersonalProjects\Event Invitation WebApp using .NET\EventInvitationWebApp\EventInvitationWebApp\bin\Debug\net7.0\Json.Net.dll
+C:\Users\vinaysharma04\OneDrive - Nagarro\Desktop\PersonalProjects\Event Invitation WebApp using .NET\EventInvitationWebApp\EventInvitationWebApp\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\vinaysharma04\OneDrive - Nagarro\Desktop\PersonalProjects\Event Invitation WebApp using .NET\EventInvitationWebApp\EventInvitationWebApp\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\vinaysharma04\OneDrive - Nagarro\Desktop\PersonalProjects\Event Invitation WebApp using .NET\EventInvitationWebApp\EventInvitationWebApp\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

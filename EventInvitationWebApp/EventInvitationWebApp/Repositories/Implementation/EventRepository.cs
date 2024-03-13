@@ -39,13 +39,15 @@ namespace EventInvitationWebApp.Repositories.Implementation
                             .Include(e => e.Invitations)
                             .ThenInclude(i => i.InvitedUser) // Include User in the Invitations collection
                             .FirstOrDefaultAsync(e => e.Id == eventId);
-            
-       
+
+
         }
 
         public async Task<List<Event>> GetAllEventsAsync()
         {
-            return await _eventInvitationDbContext.Events.Include(e => e.Creator).ToListAsync();
+            return await _eventInvitationDbContext.Events.Include(e => e.Creator)
+                .Include(i => i.Invitations)
+                .ToListAsync();
         }
 
         public async Task<List<Event>> GetEventsByUserAsync(string userId)
@@ -57,9 +59,16 @@ namespace EventInvitationWebApp.Repositories.Implementation
         {
             return await _eventInvitationDbContext.Events
                 .Include(e => e.Creator)
-                .Where(e => e.Invitations.Any(i => i.UserId == userId && i.Response == InvitationStatus.Accept))
+                .Include (i => i.Invitations)
+                .Where(e => e.Invitations.Any(i => i.UserId == userId && i.Response == InvitationStatus.Pending))
                 .ToListAsync();
                 
+        }
+
+        public async Task<Invitation> GetInviteResponse(string userId, string eventId)
+        {
+            return await _eventInvitationDbContext.Invitations
+                .FirstOrDefaultAsync(i => i.UserId == userId && i.EventId == eventId);
         }
 
     }

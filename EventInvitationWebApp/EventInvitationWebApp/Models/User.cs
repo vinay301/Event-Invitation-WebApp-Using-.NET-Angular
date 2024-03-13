@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EventInvitationWebApp.Models
 {
@@ -7,6 +8,7 @@ namespace EventInvitationWebApp.Models
     {
         public string Name { get; set; }
 
-        public ICollection<Invitation> ReceivedInvitations { get; set; }
+     
+        public virtual ICollection<Invitation> ReceivedInvitations { get; set; }
     }
 }

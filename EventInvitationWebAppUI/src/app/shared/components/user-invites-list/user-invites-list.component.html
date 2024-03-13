@@ -10,7 +10,7 @@
                   <p>Listed By: {{events.creator.email}}</p>
               </div>
               <div class="view-event">
-                 <button type="button" class="btn">View</button>
+                <button type="button" class="btn" [routerLink]="['/','view-event', events.id]">View</button>
               </div>
           </div>
       </div>

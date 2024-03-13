@@ -1,5 +1,6 @@
 ﻿using EventInvitationWebApp.Utilities.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EventInvitationWebApp.Models
 {
@@ -9,10 +10,12 @@ namespace EventInvitationWebApp.Models
         public string Id { get; set; }
 
         public string EventId { get; set; }
-        public Event Event { get; set; }
+        [JsonIgnore]
+        public virtual Event Event { get; set; }
 
         public string UserId { get; set; }
-        public User InvitedUser { get; set; }
+      
+        public virtual User InvitedUser { get; set; }
 
         public InvitationStatus Response { get; set; } = InvitationStatus.Pending;
     }

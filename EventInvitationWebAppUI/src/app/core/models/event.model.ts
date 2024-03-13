@@ -1,3 +1,4 @@
+import { Invitations } from "./invitations"
 import { User } from "./user.model"
 
 export interface Events{
@@ -7,4 +8,5 @@ export interface Events{
     endDate:Date
    creatorId:string
    creator:User
+  invitation : Invitations
 }
