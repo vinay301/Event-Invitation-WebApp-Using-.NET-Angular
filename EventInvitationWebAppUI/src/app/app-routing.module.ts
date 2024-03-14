@@ -5,14 +5,15 @@ import { LoginComponent } from './modules/auth/login/login.component';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { AddEventComponent } from './modules/home/components/add-event/add-event.component';
 import { ViewEventComponent } from './modules/home/components/view-event/view-event.component';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {path:'',redirectTo: 'home', pathMatch:"full"},
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
-  {path:'add-event',component:AddEventComponent},
-  {path:'view-event/:id', component:ViewEventComponent}
+  {path:'add-event',component:AddEventComponent, canActivate:[authGuard]},
+  {path:'view-event/:id', component:ViewEventComponent, canActivate:[authGuard]}
 ];
 
 @NgModule({
