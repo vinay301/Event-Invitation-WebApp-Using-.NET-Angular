@@ -17,6 +17,6 @@ namespace EventInvitationWebApp.Models
       
         public virtual User InvitedUser { get; set; }
 
-        public InvitationStatus Response { get; set; } = InvitationStatus.Pending;
+        public InvitationStatus Response { get; set; } = InvitationStatus.pending;
     }
 }

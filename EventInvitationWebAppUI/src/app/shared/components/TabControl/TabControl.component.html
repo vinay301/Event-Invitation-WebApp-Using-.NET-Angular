@@ -2,7 +2,8 @@
   <app-tab-item-header *ngFor="let item of tabs" [Header]="item.header"
                         [IsActive]="item.content.instance.IsActive"
                         [UniqueCode]="item.uniqueCode"
-                        (Selected)="selectTab($event)"></app-tab-item-header>
+                        (Selected)="selectTab($event)"
+                        (Close)="closeTab($event)"></app-tab-item-header>
   <!-- <app-tab-item-header class="active"></app-tab-item-header>
   <app-tab-item-header></app-tab-item-header>
   <app-tab-item-header></app-tab-item-header> -->

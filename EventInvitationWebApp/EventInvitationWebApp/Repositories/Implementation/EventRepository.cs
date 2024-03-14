@@ -60,7 +60,7 @@ namespace EventInvitationWebApp.Repositories.Implementation
             return await _eventInvitationDbContext.Events
                 .Include(e => e.Creator)
                 .Include (i => i.Invitations)
-                .Where(e => e.Invitations.Any(i => i.UserId == userId && i.Response == InvitationStatus.Pending))
+                .Where(e => e.Invitations.Any(i => i.UserId == userId && i.Response == InvitationStatus.pending))
                 .ToListAsync();
                 
         }

@@ -25,12 +25,7 @@ export class AddEventComponent implements OnInit {
       userName: '',
       password: ''
     },
-    invitation: {
-    
-      eventId:'',
-      respondingUserName:'',
-      status:''
-    },
+    invitation: [],
     
   }
   constructor(private eventsService:EventsService, private toast:NgToastService, private authService:AuthService, private router :Router) { }

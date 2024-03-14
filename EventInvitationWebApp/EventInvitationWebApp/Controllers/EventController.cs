@@ -1,4 +1,5 @@
-﻿using EventInvitationWebApp.Models;
+﻿using Azure;
+using EventInvitationWebApp.Models;
 using EventInvitationWebApp.Models.DTO;
 using EventInvitationWebApp.Models.ViewModel;
 using EventInvitationWebApp.Repositories.Interface;
@@ -140,7 +141,8 @@ namespace EventInvitationWebApp.Controllers
                     } : null,
                     Invitation = _event.Invitations != null ? _event.Invitations.Select(invitation => new InviteResponseDto(
                         eventId: invitation.EventId,
-                        respondingUserName: invitation.UserId,
+                        userId: invitation.UserId,
+                        respondingUserName: invitation.InvitedUser.UserName,
                         response: invitation.Response
                     )).ToList() : null
                 };
@@ -214,7 +216,7 @@ namespace EventInvitationWebApp.Controllers
                     Id = Guid.NewGuid().ToString(),
                     UserId = invitedUser.Id,
                     InvitedUser = invitedUser,
-                    Response = Utilities.Enums.InvitationStatus.Pending
+                    Response = Utilities.Enums.InvitationStatus.pending
                 };
 
                 _event.Invitations.Add(invitation);
@@ -310,18 +312,31 @@ namespace EventInvitationWebApp.Controllers
             {
                 if(inviteResponseDto.Status == "accept")
                 {
-                    invitation.Response = Utilities.Enums.InvitationStatus.Accept;
+                    invitation.Response = Utilities.Enums.InvitationStatus.accept;
                 }
                 else if (inviteResponseDto.Status == "reject")
                 {
-                    invitation.Response = Utilities.Enums.InvitationStatus.Reject;
+                    invitation.Response = Utilities.Enums.InvitationStatus.reject;
                 }
                 else
                 {
                     return BadRequest("Invalid Action");
                 }
                 await _eventRepository.UpdateEventAsync(_event);
-                return Ok($"Invitation Successfully {inviteResponseDto.Status}ed!");
+
+                string json = JsonConvert.SerializeObject(invitation.Id, Formatting.Indented);
+                Console.WriteLine(json);
+
+                // Remove the invitation from the database if it is accepted or rejected
+                //if (invitation.Response == Utilities.Enums.InvitationStatus.accept ||
+                //    invitation.Response == Utilities.Enums.InvitationStatus.reject)
+                //{
+                //    _event.Invitations.Remove(invitation);
+                //    await _eventRepository.UpdateEventAsync(_event);
+                //}
+
+                return Ok(inviteResponseDto);
+                
             }
             catch (Exception ex) {
                 return NotFound("Something Went Wrong!");
@@ -394,7 +409,7 @@ namespace EventInvitationWebApp.Controllers
             var invitation = await _eventRepository.GetInviteResponse(userId, eventId);
             if (invitation != null)
             {
-                return new InviteResponseDto(eventId, userId, invitation.Response);
+                return new InviteResponseDto(eventId, userId, invitation.InvitedUser.UserName, invitation.Response);
                 //return new InviteResponseDto
                 //{
                 //    EventId = eventId,

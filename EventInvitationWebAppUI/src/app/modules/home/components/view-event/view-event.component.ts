@@ -13,7 +13,7 @@ import { Invitations } from '../../../../core/models/invitations';
   styleUrls: ['./view-event.component.css']
 })
 export class ViewEventComponent implements OnInit {
-  eventDetail!: Events 
+  eventDetail: Events | undefined;
   showInviteButton:boolean = false;
   InviteResponseChoice:boolean = false
   inviteUserRequest : Invite = {
@@ -23,6 +23,7 @@ export class ViewEventComponent implements OnInit {
 
   inviteResponseForm : Invitations = {
     eventId:'',
+    userId:'',
     respondingUserName:'',
     status:''
   }
@@ -41,20 +42,23 @@ export class ViewEventComponent implements OnInit {
     let userId = this.authService.getUsrIdFromToken();
     // console.log(userId)
     console.warn(eventId);
-    eventId && this.eventService.getEventById(eventId).subscribe((result) => {
+    eventId && this.eventService.getEventById(eventId).subscribe((result:Events) => {
       console.warn(result);
       if(userId == result.creator.id)
       {
         this.showInviteButton=true
       }
+      else{
+        this.showInviteButton = false;
+      }
       // console.log("current user",this.currentUser)
       console.log("isInvited",result.invitation)
       //if the user is a currentUser and has a invite of a event, then enable the response choices for the user
-       if(userId && result.invitation)
+       if(!this.showInviteButton && result.invitation)
        {
         this.InviteResponseChoice = true;
        } 
-       this.inviteResponseForm = result.invitation!;
+        this.inviteResponseForm = result.invitation[0] as Invitations;
       this.eventDetail = result;
     })
   }
@@ -82,7 +86,7 @@ export class ViewEventComponent implements OnInit {
   inviteResponse(status:string){
     this.inviteResponseForm.status = status;
     console.log(status)
-    console.log(this.inviteResponseForm)
+    console.log("response:",this.inviteResponseForm)
     if(this.inviteResponseForm.status == "accept"){
       this.isAccepted = true;
     }
@@ -90,13 +94,14 @@ export class ViewEventComponent implements OnInit {
       this.isAccepted = false;
     }
     console.log("Accept Response", this.isAccepted)
-
+    console.log(this.inviteResponseForm)
     this.eventService.inviteResponse(this.inviteResponseForm)
     .subscribe({
       next: (inviteRes) => {
         console.log(inviteRes)
         this.toast.success({detail:"SUCCESS",summary:`Invite ${inviteRes.status}ed Successfully!`,duration:5000})
         this.router.navigate(['']);
+        
       }, 
       error: (errorMessage)=>{
         console.log(errorMessage)

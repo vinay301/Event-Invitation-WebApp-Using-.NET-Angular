@@ -2,8 +2,8 @@
 {
     public enum InvitationStatus
     {
-        Pending,
-        Accept,
-        Reject
+        pending,
+        accept,
+        reject
     }
 }

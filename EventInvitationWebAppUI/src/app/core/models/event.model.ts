@@ -8,5 +8,5 @@ export interface Events{
     endDate:Date
    creatorId:string
    creator:User
-  invitation : Invitations
+  invitation : Invitations[]
 }

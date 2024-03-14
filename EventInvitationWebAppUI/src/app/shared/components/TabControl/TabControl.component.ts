@@ -78,6 +78,42 @@ export class TabControlComponent implements OnInit, OnDestroy {
     }
   }
 
+  closeTab(uniqueCode:string){
+    var tabToClose: ITab | null = null;
+    var index = -1
+    for(let i=0; i< this.tabs.length; i++)
+      if(this.tabs[i].uniqueCode == uniqueCode){
+        tabToClose = this.tabs[i];
+        index = i;
+      }
+
+      this.removeTab(tabToClose!,index)
+  }
+
+  removeTab(tabToRemove: ITab, index: number){
+    if(tabToRemove.content.instance.IsActive){
+      tabToRemove.content.instance.IsActive = false;
+      this.tabs.splice(index,1);
+      this.containerRef.detach();
+
+      //make other tabs active if present
+      if(this.tabs.length > 0){
+        //if this was last, then its next as active, otherwise make its previous as active
+        if(index == this.tabs.length){
+          this.tabs[index - 1].content.instance.IsActive = true;
+          this.containerRef.insert(this.tabs[index-1].view)
+        }
+        else{
+          this.tabs[index].content.instance.IsActive = true;
+          this.containerRef.insert(this.tabs[index].view);
+        }
+      }
+    }
+    else{
+      this.tabs.splice(index,1);
+    }
+  }
+
   ngOnDestroy(): void {
     this.tabItemSubscription.unsubscribe();
   }

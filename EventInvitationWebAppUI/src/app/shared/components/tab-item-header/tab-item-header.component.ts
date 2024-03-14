@@ -9,6 +9,7 @@ export class TabItemHeaderComponent implements OnInit, OnChanges {
 @Input() Header:string = ''
 @Input() UniqueCode:string = ''
 @Input() IsActive: boolean = true;
+@Output() Close : EventEmitter<string> = new EventEmitter();
 @HostBinding( 'class' ) hostClass: string = '';
 @HostListener('click') onHostSelected(){
   this.Selected.emit(this.UniqueCode)
@@ -28,6 +29,10 @@ export class TabItemHeaderComponent implements OnInit, OnChanges {
         this.hostClass = '';
       }
     }
+  }
+
+  closeTab(){
+    this.Close.emit(this.UniqueCode);
   }
 
 }
